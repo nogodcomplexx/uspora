@@ -529,7 +529,6 @@ export function Gallery() {
           {/* Centering wrapper that allows vertical scrolling if content exceeds height */}
           <div 
             className="min-h-full w-full flex items-center justify-center p-4 md:p-8 lg:p-12"
-            onClick={(e) => e.stopPropagation()}
           >
             {/* Slideshow main content box */}
             <div className="relative w-full max-w-[1200px] flex flex-col lg:flex-row items-center lg:items-start justify-between gap-6 lg:gap-12 py-12">
@@ -564,7 +563,8 @@ export function Gallery() {
                   <img
                     src={activeItem.src}
                     alt={activeItem.title}
-                    className="max-w-full max-h-full object-contain rounded-2xl shadow-2xl"
+                    className="max-w-full max-h-full object-contain rounded-2xl shadow-2xl cursor-default"
+                    onClick={(e) => e.stopPropagation()}
                   />
 
                   {/* Floating Mobile Right Arrow overlaying the image */}
@@ -593,7 +593,10 @@ export function Gallery() {
               </div>
 
               {/* Technical Specifications sidebar */}
-              <div className="w-full lg:w-[360px] bg-white/[0.03] border border-white/[0.08] backdrop-blur-xl rounded-2xl p-6 md:p-8 flex flex-col justify-between shrink-0 lg:self-stretch min-h-[450px] lg:min-h-0">
+              <div 
+                className="w-full lg:w-[360px] bg-white/[0.03] border border-white/[0.08] backdrop-blur-xl rounded-2xl p-6 md:p-8 flex flex-col justify-between shrink-0 lg:self-stretch min-h-[450px] lg:min-h-0"
+                onClick={(e) => e.stopPropagation()}
+              >
                 <div>
                   <span className="text-[#F59E0B] text-xs font-bold uppercase tracking-wider block mb-1">
                   Detail instalace
