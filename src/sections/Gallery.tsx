@@ -470,15 +470,12 @@ export function Gallery() {
                   <div className="p-4 pt-3 flex items-start justify-between">
                     <div>
                       <h4 className="text-white font-bold text-base transition-colors group-hover:text-[#F59E0B]">
-                        {item.title}
+                        {item.roofType}
                       </h4>
                       <div className="flex items-center gap-1.5 mt-1.5 text-white/50">
                         <MapPin size={13} className="text-[#F59E0B]/70" />
                         <span className="text-xs font-medium">{item.location.split(',')[0]}</span>
                       </div>
-                      <p className="text-white/40 text-xs mt-1.5 font-medium">
-                        {item.roofType}
-                      </p>
                     </div>
                     <span className="bg-[#F59E0B]/10 border border-[#F59E0B]/25 text-[#F59E0B] px-2.5 py-1 rounded-lg text-xs font-bold uppercase tracking-wide">
                       {item.power}
