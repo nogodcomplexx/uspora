@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="cs" style="background-color: #0F172A;">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="description" content="Úspora FVE — Profesionální fotovoltaické instalace pro ohřev vody po celé ČR. 500+ instalací, špičkové panely Trina Vertex S+, kompletní balíček za 49 999 Kč." />
+    <meta name="theme-color" content="#0F172A" />
+    
+    <!-- Open Graph / Facebook / WhatsApp -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://uspora-fve.cz/" />
+    <meta property="og:title" content="Úspora FVE — Fotovoltaika pro ohřev vody (Celoevropská kvalita, montáž po celé ČR)" />
+    <meta property="og:description" content="Kvalitní panely Trina Vertex S+, ohřev vody za 49 999 Kč bez starostí s naší zárukou a profi instalací." />
+    <meta property="og:image" content="https://uspora-fve.cz/images/installation-work.jpg" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://uspora-fve.cz/" />
+    <meta property="twitter:title" content="Úspora FVE — Fotovoltaika pro ohřev vody" />
+    <meta property="twitter:description" content="Kvalitní panely Trina Vertex S+, ohřev vody za 49 999 Kč s profesionální instalací." />
+    <meta property="twitter:image" content="https://uspora-fve.cz/images/installation-work.jpg" />
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Úspora FVE",
+      "image": "https://uspora-fve.cz/images/installation-work.jpg",
+      "description": "Profesionální instalace fotovoltaiky pro ohřev vody na klíč po celé České republice.",
+      "url": "https://uspora-fve.cz",
+      "areaServed": {
+        "@type": "Country",
+        "name": "Czech Republic"
+      },
+      "priceRange": "49999 CZK",
+      "makesOffer": {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Product",
+          "name": "Fotovoltaika pro ohřev vody",
+          "description": "Systém pro efektivní ohřev vody pomocí sluneční energie. Obsahuje solární panely Trina Vertex S+ a montáž.",
+          "offers": {
+            "@type": "Offer",
+            "price": "49999",
+            "priceCurrency": "CZK"
+          }
+        }
+      }
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <title>Úspora FVE — Fotovoltaika pro ohřev vody</title>
+    <!-- Google Consent Mode v2 -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      
+      // Výchozí stav: zamítnuto (GDPR compliant)
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'wait_for_update': 500
+      });
+    </script>
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9G648Z4CWV"></script>
+    <script>
+      gtag('js', new Date());
+
+      gtag('config', 'G-9G648Z4CWV', {
+        send_page_view: false // Budeme řešit manuálně přes React Router
+      });
+    </script>
+
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    
+    // GDPR: Výchozí zamítnutí cookies pro Meta Pixel, dokud uživatel nepotvrdí Cookie lištu
+    fbq('consent', 'revoke');
+    
+    fbq('init', '1172959863574196');
+    // PageView bude odesíláno manuálně přes React Router, takže zde ho můžeme vynechat, 
+    // nebo ho nechat pro první načtení (ale jelikož je revoked, neodešle se do doby consentu).
+    fbq('track', 'PageView');
+    </script>
+    <!-- End Meta Pixel Code -->
+  </head>
+  <body style="background-color: #0F172A; margin: 0;">
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1172959863574196&ev=PageView&noscript=1"
+    /></noscript>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

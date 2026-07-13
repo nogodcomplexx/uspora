@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cenová nabídka – Úspora FVE</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg-primary: #0F172A;
+  --bg-card: #1E293B;
+  --bg-input: #334155;
+  --accent: #F59E0B;
+  --accent-dim: rgba(245, 158, 11, 0.15);
+  --accent-border: rgba(245, 158, 11, 0.3);
+  --text-white: #F8FAFC;
+  --text-muted: #94A3B8;
+  --text-dim: #64748B;
+  --border: #334155;
+  --success: #10B981;
+}
+
+@page {
+  size: A4;
+  margin: 0;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: #1a1a2e;
+  color: var(--text-white);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.page {
+  width: 210mm;
+  min-height: 297mm;
+  margin: 20px auto;
+  background: var(--bg-primary);
+  position: relative;
+  overflow: hidden;
+  page-break-after: always;
+  padding: 0;
+}
+
+@media print {
+  body { background: none; margin: 0; }
+  .page { margin: 0; box-shadow: none; min-height: 297mm; }
+  .no-print { display: none !important; }
+}
+
+.save-btn {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  width: 210mm; margin: 20px auto;
+  padding: 16px 32px;
+  background: linear-gradient(135deg, #F59E0B, #D97706);
+  color: #0F172A; font-family: inherit; font-size: 16px; font-weight: 800;
+  border: none; border-radius: 12px; cursor: pointer;
+  transition: all 0.2s;
+}
+.save-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(245,158,11,0.35); }
+.save-btn:active { transform: scale(0.98); }
+.save-btn svg { width: 20px; height: 20px; }
+
+.sig-canvas-wrap { position: relative; margin-top: 4px; }
+.sig-canvas {
+  width: 100%; height: 70px;
+  background: #fff; border-radius: 8px;
+  cursor: crosshair; display: block;
+}
+.sig-clear {
+  position: absolute; top: 4px; right: 4px;
+  background: rgba(15,23,42,0.7); color: #94A3B8;
+  border: none; border-radius: 6px; padding: 3px 8px;
+  font-size: 10px; font-weight: 600; cursor: pointer;
+  font-family: inherit; transition: all 0.2s;
+}
+.sig-clear:hover { background: rgba(15,23,42,0.9); color: #fff; }
+
+/* ── Customer Editable Highlight ── */
+.info-field.customer-edit {
+  border-color: var(--accent-border);
+  background: rgba(245, 158, 11, 0.06);
+  box-shadow: inset 3px 0 0 var(--accent);
+}
+.order-detail.customer-edit {
+  border-color: var(--accent-border);
+  background: rgba(245, 158, 11, 0.06);
+  box-shadow: inset 3px 0 0 var(--accent);
+}
+.sig-box.customer-edit {
+  border-color: var(--accent-border);
+  background: rgba(245, 158, 11, 0.06);
+  box-shadow: inset 3px 0 0 var(--accent);
+}
+
+/* ── Decorative Elements ── */
+.page-glow {
+  position: absolute;
+  top: -120px;
+  right: -120px;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(245,158,11,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.accent-line {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent), #D97706, var(--accent));
+}
+
+/* ── Header ── */
+.header {
+  padding: 36px 40px 24px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+}
+
+.logo-area { display: flex; align-items: center; gap: 12px; }
+
+.logo-icon {
+  width: 44px; height: 44px;
+  background: var(--accent-dim);
+  border: 1px solid var(--accent-border);
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+}
+
+.logo-icon svg { width: 22px; height: 22px; }
+
+.logo-text { font-size: 20px; font-weight: 800; letter-spacing: -0.02em; }
+.logo-text span { color: var(--accent); }
+
+.doc-title-area { text-align: right; }
+.doc-title {
+  font-size: 26px; font-weight: 800; letter-spacing: -0.03em;
+  background: linear-gradient(135deg, var(--text-white), var(--text-muted));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.doc-subtitle { font-size: 12px; color: var(--text-muted); margin-top: 4px; font-weight: 500; }
+
+/* ── Content Area ── */
+.content { padding: 28px 40px; position: relative; z-index: 1; }
+
+/* ── Section Title ── */
+.section-title {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 16px; margin-top: 8px;
+}
+.section-title .bar { width: 4px; height: 22px; background: var(--accent); border-radius: 4px; }
+.section-title h2 {
+  font-size: 14px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.08em; color: var(--text-muted);
+}
+
+/* ── Customer Table ── */
+.info-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+}
+.info-field {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 14px;
+  display: flex; flex-direction: column; gap: 3px;
+}
+.info-field.full { grid-column: 1 / -1; }
+.info-field label {
+  font-size: 10px; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.06em; color: var(--text-dim);
+}
+.info-field .value {
+  font-size: 14px; font-weight: 500; color: var(--text-white);
+  border: none; background: transparent; outline: none;
+  border-bottom: 1px dashed var(--border);
+  padding-bottom: 2px; min-height: 20px;
+  font-family: inherit;
+}
+
+@media print {
+  .info-field .value { border-bottom-color: var(--text-dim); }
+}
+
+/* ── Budget Table ── */
+.budget-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.budget-table thead th {
+  background: var(--bg-card);
+  padding: 11px 16px;
+  font-size: 11px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.06em; color: var(--text-muted);
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+.budget-table thead th:first-child { width: 50px; text-align: center; }
+
+.budget-table tbody td {
+  padding: 11px 16px;
+  font-size: 13px; font-weight: 500;
+  border-bottom: 1px solid rgba(51, 65, 85, 0.5);
+  color: var(--text-white);
+}
+.budget-table tbody td:first-child {
+  text-align: center; color: var(--text-muted); font-weight: 600;
+  background: rgba(30, 41, 59, 0.5);
+}
+.budget-table tbody tr:last-child td { border-bottom: none; }
+.budget-table tbody tr:hover { background: rgba(30, 41, 59, 0.3); }
+
+/* ── Total Row ── */
+.total-row {
+  display: flex; align-items: center; justify-content: space-between;
+  background: var(--accent-dim);
+  border: 1px solid var(--accent-border);
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-top: 14px;
+}
+.total-label {
+  font-size: 14px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.06em; color: var(--text-muted);
+}
+.total-price {
+  font-size: 28px; font-weight: 900; color: var(--accent);
+  letter-spacing: -0.02em;
+}
+.total-vat { font-size: 11px; color: var(--text-dim); font-weight: 500; margin-top: 2px; text-align: right; }
+
+/* ── Footer ── */
+.page-footer {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 16px 40px;
+  border-top: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  font-size: 11px; color: var(--text-dim);
+  background: rgba(15, 23, 42, 0.95);
+}
+.footer-contact { display: flex; gap: 20px; align-items: center; }
+.footer-contact a { color: var(--accent); text-decoration: none; font-weight: 600; }
+.footer-page { color: var(--text-dim); font-weight: 600; }
+
+/* ═══ PAGE 2 — Objednávka ═══ */
+.order-section { margin-bottom: 18px; }
+.order-section h3 {
+  font-size: 12px; font-weight: 700; color: var(--accent);
+  text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px;
+}
+.order-text {
+  font-size: 12px; line-height: 1.7; color: var(--text-muted); font-weight: 400;
+}
+.order-text strong { color: var(--text-white); font-weight: 600; }
+.order-text .highlight { color: var(--accent); font-weight: 700; }
+
+.order-detail-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px;
+}
+.order-detail {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 14px;
+}
+.order-detail.full { grid-column: 1 / -1; }
+.order-detail label {
+  font-size: 10px; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.06em; color: var(--text-dim); display: block; margin-bottom: 3px;
+}
+.order-detail .val {
+  font-size: 13px; font-weight: 500; color: var(--text-white);
+  border: none; background: transparent; outline: none;
+  border-bottom: 1px dashed var(--border);
+  padding-bottom: 2px; min-height: 18px; width: 100%;
+  font-family: inherit;
+}
+.order-detail .val-static {
+  font-size: 13px; font-weight: 600; color: var(--text-white);
+}
+.order-detail .val-highlight {
+  font-size: 16px; font-weight: 800; color: var(--accent);
+}
+
+/* ── Signatures ── */
+.sig-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 20px;
+}
+.sig-box {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px 18px;
+  background: var(--bg-card);
+}
+.sig-box h4 {
+  font-size: 11px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.06em; color: var(--text-dim); margin-bottom: 10px;
+}
+.sig-line {
+  border-bottom: 1px dashed var(--border);
+  min-height: 18px; margin-bottom: 8px;
+  font-size: 13px; font-weight: 500; color: var(--text-white);
+}
+.sig-line-label {
+  font-size: 10px; color: var(--text-dim); margin-bottom: 4px; font-weight: 500;
+}
+.sig-area {
+  height: 50px;
+  border: 1px dashed var(--border);
+  border-radius: 8px;
+  margin-top: 8px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-dim); font-size: 10px;
+}
+
+.legal-note {
+  font-size: 10px; color: var(--text-dim); text-align: center;
+  padding: 10px 40px; line-height: 1.5;
+}
+
+.terms-box {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin-bottom: 14px;
+}
+.terms-box p {
+  font-size: 11px; line-height: 1.65; color: var(--text-muted);
+}
+.terms-box p + p { margin-top: 6px; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ PAGE 1: CENOVÁ NABÍDKA ═══════════════ -->
+<div class="page">
+  <div class="accent-line"></div>
+  <div class="page-glow"></div>
+
+  <!-- Header -->
+  <div class="header">
+    <div class="logo-area">
+      <div class="logo-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+        </svg>
+      </div>
+      <div class="logo-text"><span>Úspora</span> FVE</div>
+    </div>
+    <div class="doc-title-area">
+      <div class="doc-title">Cenová nabídka</div>
+      <div class="doc-subtitle">Fotovoltaická elektrárna pro ohřev vody</div>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="no-print" style="background:var(--accent-dim);border:1px solid var(--accent-border);border-radius:10px;padding:10px 16px;margin-bottom:16px;display:flex;align-items:center;gap:8px;">
+      <span style="font-size:16px;">📝</span>
+      <span style="font-size:12px;font-weight:600;color:var(--accent);">Vyplňte prosím zvýrazněná pole a podepište objednávku na stránce 2.</span>
+    </div>
+    <!-- Customer Section -->
+    <div class="section-title">
+      <div class="bar"></div>
+      <h2>Zákazník</h2>
+    </div>
+    <div class="info-grid">
+      <div class="info-field customer-edit">
+        <label>Jméno</label>
+        <input class="value" type="text" placeholder="...">
+      </div>
+      <div class="info-field customer-edit">
+        <label>Příjmení</label>
+        <input class="value" type="text" placeholder="...">
+      </div>
+      <div class="info-field full customer-edit">
+        <label>Adresa</label>
+        <input class="value" type="text" placeholder="...">
+      </div>
+      <div class="info-field customer-edit">
+        <label>Telefon</label>
+        <input class="value" type="text" placeholder="...">
+      </div>
+      <div class="info-field customer-edit">
+        <label>Email</label>
+        <input class="value" type="text" placeholder="...">
+      </div>
+    </div>
+
+    <!-- Budget Section -->
+    <div class="section-title" style="margin-top: 22px;">
+      <div class="bar"></div>
+      <h2>Rozpočet</h2>
+    </div>
+    <table class="budget-table">
+      <thead>
+        <tr>
+          <th>Ks</th>
+          <th>Položka</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+        <tr><td>1×</td><td>Sada pro ohřev vody 3185 W</td></tr>
+        <tr><td>1×</td><td>7× Panel 455 W TRINA SOLAR</td></tr>
+        <tr><td>1×</td><td>Sada kabelů 25 M</td></tr>
+        <tr><td>1×</td><td>Konektory MC4, kompletní konstrukce</td></tr>
+        <tr><td>1×</td><td>Solární měnič Green Boost 4000 PRO</td></tr>
+        <tr><td>1×</td><td>Instalace</td></tr>
+        <tr><td>1×</td><td>Revize</td></tr>
+        <tr><td>1×</td><td>Uzemnění</td></tr>
+      
+      </tbody>
+    </table>
+
+    <div class="total-row">
+      <div>
+        <div class="total-label">Celkem</div>
+        <div class="total-vat">Včetně DPH</div>
+      </div>
+      <div class="total-price">65 499 Kč</div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <div class="footer-contact">
+      <span>✉ usporafve@gmail.com</span>
+      <a href="https://www.uspora-fve.cz">www.uspora-fve.cz</a>
+      <span>☎ +420 777 366 239</span>
+    </div>
+    <div class="footer-page">1 / 2</div>
+  </div>
+</div>
+
+<!-- ═══════════════ PAGE 2: OBJEDNÁVKA ═══════════════ -->
+<div class="page">
+  <div class="accent-line"></div>
+  <div class="page-glow"></div>
+
+  <div class="header">
+    <div class="logo-area">
+      <div class="logo-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+        </svg>
+      </div>
+      <div class="logo-text"><span>Úspora</span> FVE</div>
+    </div>
+    <div class="doc-title-area">
+      <div class="doc-title">Objednávka č. K-107</div>
+    </div>
+  </div>
+
+  <div class="content" style="padding-top:20px;">
+    <!-- Supplier & Customer side by side -->
+    <div class="order-detail full" style="grid-column:1/-1;padding:16px 20px;margin-bottom:12px;">
+      <label>Dodavatel</label>
+      <div class="val-static" style="margin-top:4px;">H-Business trade s.r.o.</div>
+      <p style="font-size:11px;color:var(--text-muted);line-height:1.6;margin-top:4px;">
+        Sídlo: Jaurisova 515/4, 140 00 Praha 4 &nbsp;|&nbsp; IČ: 11852402 &nbsp;|&nbsp; Bankovní spojení: 26982698/5500 &nbsp;|&nbsp; Zastoupený: Nikola Hurban
+      </p>
+    </div>
+
+    <!-- Order Details -->
+    <div class="order-section">
+      <h3>Předmět objednávky</h3>
+      <div class="terms-box">
+        <p>Fotovoltaický systém popsaný výše v cenové nabídce, která je nedílnou součástí této objednávky. Zákazníkovi je také nabídnuta revize za cenu 2 500 Kč. V případě odmítnutí si zákazník zajistí revizi sám.</p>
+      </div>
+    </div>
+
+    <div class="order-detail-grid">
+      <div class="order-detail">
+        <label>Termín dodání</label>
+        <div class="val-static" style="margin-top:3px;"><span style="color:var(--accent);font-weight:700;">Nejdéle 90 kalendářních dní</span> od podpisu objednávky</div>
+        <p style="font-size:10px;color:var(--text-dim);margin-top:3px;">Přesný termín bude dojednán telefonicky.</p>
+      </div>
+      <div class="order-detail customer-edit">
+        <label>Adresa instalace</label>
+        <input class="val" type="text" placeholder="..." style="margin-top:3px;">
+      </div>
+      <div class="order-detail">
+        <label>Cena celkem</label>
+        <div class="val-highlight" style="margin-top:3px;">65 499 Kč</div>
+      </div>
+      <div class="order-detail">
+        <label>Lhůta splatnosti</label>
+        <div class="val-static" style="margin-top:3px;font-size:12px;"><span style="color:var(--accent);font-weight:700;">Platba faktury převodem</span> bezprostředně po realizaci zakázky v den zhotovení.</div>
+      </div>
+    </div>
+
+    <!-- Terms -->
+    <div class="order-section" style="margin-top:12px;">
+      <h3>Podmínky</h3>
+      <div class="terms-box">
+        <p>Podepsáním objednávky dodavatelem, je objednateli rezervováno pořadové číslo zakázky na termínové listině instalačního partnera a zároveň rezervován materiál ze skladových zásob. Z tohoto důvodu je objednávka závazná.</p>
+        <p>Za odstoupení od objednávky z jiného důvodu, než je objednateli účtována úhrada režijních nákladů dodavatele 20 % z celkové ceny díla.</p>
+        <p>– zákazník byl upozorněn na nevhodnost instalace FVE na objekt bez hromosvodu.</p>
+        <p>– v případě výměny střídače v záruční době je nutno zaplatit výjezd technika 1 000,- Kč.</p>
+      </div>
+    </div>
+
+    <!-- Signatures -->
+    <div class="sig-grid">
+      <div class="sig-box">
+        <h4>Za dodavatele</h4>
+        <div class="sig-line-label">Jméno</div>
+        <div class="sig-line">Nikola Hurban, jednatel</div>
+        <div style="display:flex;gap:12px;">
+          <div style="flex:1;"><div class="sig-line-label">V:</div><div class="sig-line" style="font-size:12px;">Praha</div></div>
+          <div style="flex:1;"><div class="sig-line-label">Dne:</div><div class="sig-line" style="font-size:12px;" id="supplierDate"></div></div>
+        </div>
+        <div style="margin-top:8px;padding:4px 0;">
+          <img src="data:image/png;base64,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" alt="Podpis jednatele" style="height:60px;filter:invert(1) brightness(10) contrast(2);mix-blend-mode:screen;">
+        </div>
+      </div>
+      <div class="sig-box customer-edit">
+        <h4>Za objednatele</h4>
+        <div class="sig-line-label">Jméno</div>
+        <input class="val" type="text" placeholder="..." style="width:100%;">
+        <div style="display:flex;gap:12px;margin-top:6px;">
+          <div style="flex:1;"><div class="sig-line-label">V:</div><input class="val" type="text" placeholder="..."></div>
+          <div style="flex:1;"><div class="sig-line-label">Dne:</div><input class="val" id="customerDate" type="text" placeholder="..." oninput="document.getElementById('supplierDate').textContent=this.value"></div>
+        </div>
+        <div style="margin-top:10px;display:flex;align-items:center;gap:6px;">
+          <span style="font-size:14px;">✍️</span>
+          <span style="font-size:11px;font-weight:700;color:var(--accent);letter-spacing:0.03em;">Podepište se zde myší</span>
+        </div>
+        <div class="sig-canvas-wrap">
+          <canvas id="sigCanvas" class="sig-canvas"></canvas>
+          <button class="sig-clear no-print" onclick="clearSig()">Smazat</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="legal-note">
+    Tato objednávka se řídí § 1856 zákona č. 89/2012 Sb., občanského zákoníku, ve znění pozdějších předpisů.
+  </div>
+
+  <div class="page-footer">
+    <div class="footer-contact">
+      <span>✉ usporafve@gmail.com</span>
+      <a href="https://www.uspora-fve.cz">www.uspora-fve.cz</a>
+      <span>☎ +420 777 366 239</span>
+    </div>
+    <div class="footer-page">2 / 2</div>
+  </div>
+</div>
+
+<button class="save-btn no-print" onclick="window.print()">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+  Uložit nabídku jako PDF
+</button>
+
+<script>
+// Signature Pad
+const canvas = document.getElementById('sigCanvas');
+const ctx = canvas.getContext('2d');
+let drawing = false;
+
+function resizeCanvas() {
+  const rect = canvas.getBoundingClientRect();
+  const dpr = window.devicePixelRatio || 1;
+  canvas.width = rect.width * dpr;
+  canvas.height = rect.height * dpr;
+  ctx.scale(dpr, dpr);
+  ctx.strokeStyle = '#1a1a2e';
+  ctx.lineWidth = 2;
+  ctx.lineCap = 'round';
+  ctx.lineJoin = 'round';
+}
+resizeCanvas();
+
+function getPos(e) {
+  const rect = canvas.getBoundingClientRect();
+  const t = e.touches ? e.touches[0] : e;
+  return { x: t.clientX - rect.left, y: t.clientY - rect.top };
+}
+
+canvas.addEventListener('mousedown', e => { drawing = true; ctx.beginPath(); const p = getPos(e); ctx.moveTo(p.x, p.y); });
+canvas.addEventListener('mousemove', e => { if (!drawing) return; const p = getPos(e); ctx.lineTo(p.x, p.y); ctx.stroke(); });
+canvas.addEventListener('mouseup', () => drawing = false);
+canvas.addEventListener('mouseleave', () => drawing = false);
+
+canvas.addEventListener('touchstart', e => { e.preventDefault(); drawing = true; ctx.beginPath(); const p = getPos(e); ctx.moveTo(p.x, p.y); }, { passive: false });
+canvas.addEventListener('touchmove', e => { e.preventDefault(); if (!drawing) return; const p = getPos(e); ctx.lineTo(p.x, p.y); ctx.stroke(); }, { passive: false });
+canvas.addEventListener('touchend', () => drawing = false);
+
+function clearSig() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
+
+window.addEventListener('resize', () => {
+  const imgData = canvas.toDataURL();
+  resizeCanvas();
+  const img = new Image();
+  img.onload = () => ctx.drawImage(img, 0, 0, canvas.width / (window.devicePixelRatio||1), canvas.height / (window.devicePixelRatio||1));
+  img.src = imgData;
+});
+</script>
+</body>
+</html>

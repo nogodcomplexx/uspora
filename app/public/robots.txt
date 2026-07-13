@@ -1,0 +1,16 @@
+User-agent: *
+Allow: /
+
+# Specifically allowing known AI and LLM crawlers
+User-agent: CCBot
+Allow: /
+User-agent: GPTBot
+Allow: /
+User-agent: ChatGPT-User
+Allow: /
+User-agent: Anthropic-ai
+Allow: /
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://uspora-fve.cz/sitemap.xml

@@ -1,0 +1,20 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Node modules & build outputs
+**/node_modules/
+**/dist/
+**/dist-ssr/
+app/node_modules/
+app/dist/
+
+# Temporary and bulky files
+*.zip
+*.pdf
+.DS_Store
+.vscode/
+.idea/
+*.suo
+*.sw?
