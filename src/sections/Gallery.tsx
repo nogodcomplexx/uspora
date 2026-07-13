@@ -14,7 +14,7 @@ const galleryItems = [
     panels: '5x Trina Solar 455W',
     roofType: 'Šedá betonová taška',
     saving: '60 % ročních nákladů',
-    desc: 'Instalace pěti panelů v jedné horizontální řadě na moderní šedou střešní tašku. Rychlá a spolehlivá montáž s nerezovými háky kotvenými do krovu.'
+    desc: 'Šedá betonová taška'
   },
   {
     id: 2,
@@ -26,7 +26,7 @@ const galleryItems = [
     panels: '7x Trina Solar 455W',
     roofType: 'Červená střešní taška',
     saving: '69 % ročních nákladů',
-    desc: 'Montáž sedmi panelů ve vertikálním rozložení na klasickou pálenou tašku. Skvělý příklad využití výškově orientované střešní plochy.'
+    desc: 'Červená střešní taška'
   },
   {
     id: 3,
@@ -38,7 +38,7 @@ const galleryItems = [
     panels: '7x Trina Solar 455W',
     roofType: 'Asfaltový šindel',
     saving: '69 % ročních nákladů',
-    desc: 'Instalace sedmi panelů na střechu pokrytou kanadským šindelem. Použity speciální střešní držáky zaručující dokonalé utěsnění proti zatékání.'
+    desc: 'Asfaltový šindel'
   },
   {
     id: 4,
@@ -50,7 +50,7 @@ const galleryItems = [
     panels: '6x Trina Solar 455W',
     roofType: 'Černá střešní taška',
     saving: '65 % ročních nákladů',
-    desc: 'Montáž šesti panelů (2 columns o 3 panelech) na elegantní černou tašku rodinného domu. Černé rámy panelů (Full Black) skvěle doplňují celkový design střechy.'
+    desc: 'Černá střešní taška'
   },
   {
     id: 5,
@@ -62,7 +62,7 @@ const galleryItems = [
     panels: '6x Trina Solar 455W',
     roofType: 'Pálená střešní taška',
     saving: '67 % ročních nákladů',
-    desc: 'Instalace šesti panelů na šikmou střechu s červenou pálenou taškou. Použity nerezové střešní háky přizpůsobené pro bezpečné kotvení na tento typ tašek.'
+    desc: 'Pálená střešní taška'
   },
   {
     id: 6,
@@ -74,7 +74,7 @@ const galleryItems = [
     panels: '6x Trina Solar 455W',
     roofType: 'Betonová taška',
     saving: '66 % ročních nákladů',
-    desc: 'Instalace šesti panelů vedle sebe podél střešního hřebene. Získali jsme maximální možný výkon z této části střechy bez stínění.'
+    desc: 'Betonová taška'
   },
   {
     id: 7,
@@ -86,7 +86,7 @@ const galleryItems = [
     panels: '6x Trina Solar 455W',
     roofType: 'Vlnitá krytina / Plech',
     saving: '66 % ročních nákladů',
-    desc: 'Využití střechy vedlejší hospodářské budovy (stodoly) s vlnitým plechem. Skvělé řešení, pokud střecha samotného rodinného domu není ideálně orientována.'
+    desc: 'Vlnitá krytina / Plech'
   },
   {
     id: 8,
@@ -98,7 +98,7 @@ const galleryItems = [
     panels: '6x Trina Solar 455W',
     roofType: 'Eternitové kosočtverce',
     saving: '66 % ročních nákladů',
-    desc: 'Montáž šesti panelů na rodinný dům se starší eternitovou krytinou. Naši technici použili speciální držáky na šablony bez rizika poškození krytiny.'
+    desc: 'Eternitové kosočtverce'
   },
   {
     id: 9,
@@ -110,7 +110,7 @@ const galleryItems = [
     panels: '5x Trina Solar 455W',
     roofType: 'Červená pálená taška',
     saving: '61 % ročních nákladů',
-    desc: 'Instalace pěti panelů na střechu s taškovou krytinou přímo nad verandou rodinného domu. Čistá a úhledná práce.'
+    desc: 'Červená pálená taška'
   },
   {
     id: 10,
@@ -122,7 +122,7 @@ const galleryItems = [
     panels: '5x Trina Solar 455W',
     roofType: 'Tmavě hnědá taška',
     saving: '61 % ročních nákladů',
-    desc: 'Montáž pěti panelů v jedné řadě na tmavě hnědou střešní krytinu. Optimální využití jižní orientace střechy.'
+    desc: 'Tmavě hnědá taška'
   },
   {
     id: 11,
@@ -134,7 +134,7 @@ const galleryItems = [
     panels: '7x Trina Solar 455W',
     roofType: 'Pálená taška',
     saving: '69 % ročních nákladů',
-    desc: 'Systém se sedmi panely na červené střešní tašce. Skvělá volba pro běžný rodinný dům.'
+    desc: 'Pálená taška'
   },
   {
     id: 12,
@@ -146,7 +146,7 @@ const galleryItems = [
     panels: '6x Trina Solar 455W',
     roofType: 'Trapézový červený plech',
     saving: '66 % ročních nákladů',
-    desc: 'Instalace na garáž s trapézovým plechem. Celkem 6 panelů se speciálními upevňovacími prvky s pryžovým těsněním přímo na plechovou vlu.'
+    desc: 'Trapézový červený plech'
   },
   {
     id: 13,
@@ -158,7 +158,7 @@ const galleryItems = [
     panels: '6x Trina Solar 455W',
     roofType: 'Šedý střešní šindel / Plech',
     saving: '67 % ročních nákladů',
-    desc: 'Dvouřadá montáž po třech panelech (celkem 6) na šikmou střechu rodinného domu se střešními okny. Maximální využití plochy.'
+    desc: 'Šedý střešní šindel / Plech'
   },
   {
     id: 14,
@@ -170,7 +170,7 @@ const galleryItems = [
     panels: '6x Trina Solar 455W',
     roofType: 'Hnědá taška',
     saving: '66 % ročních nákladů',
-    desc: 'Instalace šesti panelů na šikmé střeše rodinného domu s hnědou betonovou taškou. Profesionální a rychlé upevnění do střešní konstrukce.'
+    desc: 'Hnědá taška'
   },
   {
     id: 15,
@@ -182,7 +182,7 @@ const galleryItems = [
     panels: '5x Trina Solar 455W',
     roofType: 'Pálená taška',
     saving: '60 % ročních nákladů',
-    desc: 'Klasická instalace pěti panelů na rodinný dům s tradiční pálenou taškou.'
+    desc: 'Pálená taška'
   },
   {
     id: 16,
@@ -194,7 +194,7 @@ const galleryItems = [
     panels: '8x Trina Solar 455W',
     roofType: 'Plochá střecha (Asfaltové pásy)',
     saving: '68 % ročních nákladů',
-    desc: 'Instalace na plochou střechu rodinného domu s krytinou z asfaltových pásů s využitím zátěžových trojúhelníkových konstrukcí. Celkem 8 panelů s celkovým výkonem 3.64 kWp.'
+    desc: 'Plochá střecha (Asfaltové pásy)'
   },
   {
     id: 17,
@@ -206,7 +206,7 @@ const galleryItems = [
     panels: '8x Trina Solar 455W',
     roofType: 'Plochá střecha (Zátěžový systém)',
     saving: '68 % ročních nákladů',
-    desc: 'Detailní pohled na konstrukční řešení ploché střechy s asfaltovými pásy. Použity hliníkové profily s antikorozní úpravou a betonové zátěžové bloky zaručující stabilitu i při silném větru.'
+    desc: 'Plochá střecha (Zátěžový systém)'
   },
   {
     id: 18,
@@ -218,7 +218,7 @@ const galleryItems = [
     panels: '4x Trina Solar 455W',
     roofType: 'Pálená taška',
     saving: '50 % ročních nákladů',
-    desc: 'Klasická montáž čtyř panelů na pálenou tašku s nerezovými střešními háky. Panely jsou umístěny vedle stávajícího vikýře a satelitní antény pro optimální využití osluněné plochy.'
+    desc: 'Pálená taška'
   },
   {
     id: 19,
@@ -230,7 +230,7 @@ const galleryItems = [
     panels: '4x Trina Solar 455W',
     roofType: 'Pozemní ocelová konstrukce',
     saving: '50 % ročních nákladů',
-    desc: 'Ideální řešení v případě nevhodné orientace nebo konstrukce střechy. Čtyři panely ukotveny do zemních vrutů na štěrkovém loži s optimálním celoročním sklonem 35°.'
+    desc: 'Pozemní ocelová konstrukce'
   },
   {
     id: 20,
@@ -242,7 +242,7 @@ const galleryItems = [
     panels: '5x Trina Solar 455W',
     roofType: 'Plechová střecha (Klik systém)',
     saving: '60 % ročních nákladů',
-    desc: 'Montáž pěti panelů na moderní plechovou krytinu s využitím speciálních falcových svorek bez vrtání do plechu, což zcela eliminuje riziko budoucího zatékání.'
+    desc: 'Plechová střecha (Klik systém)'
   },
   {
     id: 21,
@@ -254,7 +254,7 @@ const galleryItems = [
     panels: 'Náš špičkový technik na střeše',
     roofType: 'Plechová střecha (Dokončovací práce)',
     saving: 'Bezpečnost na prvním místě',
-    desc: 'Pohled přímo z realizace. Naši montážníci dbají na maximální preciznost usazení panelů a čisté vedení kabeláže v chráničkách odolných proti UV záření.'
+    desc: 'Plechová střecha (Dokončovací práce)'
   },
   {
     id: 22,
@@ -266,7 +266,7 @@ const galleryItems = [
     panels: '5x Trina Solar 455W',
     roofType: 'Plechové šablony',
     saving: '60 % ročních nákladů',
-    desc: 'Čistá instalace pěti panelů na plechovou krytinu rodinného domu. Použity hliníkové kombivruty s těsněním EPDM zajišťující absolutní nepropustnost spojů.'
+    desc: 'Plechové šablony'
   },
   {
     id: 23,
@@ -278,7 +278,7 @@ const galleryItems = [
     panels: '5x Trina Solar 455W',
     roofType: 'Zahradní instalace (Detail z profilu)',
     saving: '60 % ročních nákladů',
-    desc: 'Pohled na konstrukční detaily pěti panelů pozemní FVE. Robustní ocelový rám ošetřený žárovým zinkováním zaručuje extrémní mechanickou odolnost a bezúdržbovost po desítky let.'
+    desc: 'Zahradní instalace (Detail z profilu)'
   },
   {
     id: 24,
@@ -290,7 +290,7 @@ const galleryItems = [
     panels: '6x Trina Solar 455W',
     roofType: 'Plechová střecha',
     saving: '66 % ročních nákladů',
-    desc: 'Varianta ohřevu vody pro běžnou domácnost. 6 panelů spolehlivě pokrývá spotřebu teplé vody a přebytky dokáže směrovat do akumulační nádoby.'
+    desc: 'Plechová střecha'
   },
   {
     id: 25,
@@ -302,14 +302,12 @@ const galleryItems = [
     panels: '5x Trina Solar 455W',
     roofType: 'Vlnitý plech (Vedlejší stavba)',
     saving: '60 % ročních nákladů',
-    desc: 'Příklad využití střechy hospodářské budovy vedle domu s pěti panely. Ideální volba, pokud střecha samotného rodinného domu nemá optimální orientaci vůči světovým stranám.'
+    desc: 'Vlnitý plech (Vedlejší stavba)'
   }
 ];
 
 const categories = [
   { id: 'vse', label: 'Všechny realizace' },
-  { id: 'tašková', label: 'Taškové střechy' },
-  { id: 'plechová', label: 'Plechové střechy' },
   { id: 'plochá', label: 'Ploché střechy' },
   { id: 'zahrada', label: 'Zahradní / Pozemní' }
 ];
@@ -478,6 +476,9 @@ export function Gallery() {
                         <MapPin size={13} className="text-[#F59E0B]/70" />
                         <span className="text-xs font-medium">{item.location.split(',')[0]}</span>
                       </div>
+                      <p className="text-white/40 text-xs mt-1.5 font-medium">
+                        {item.roofType}
+                      </p>
                     </div>
                     <span className="bg-[#F59E0B]/10 border border-[#F59E0B]/25 text-[#F59E0B] px-2.5 py-1 rounded-lg text-xs font-bold uppercase tracking-wide">
                       {item.power}
