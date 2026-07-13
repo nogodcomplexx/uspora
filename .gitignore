@@ -7,8 +7,8 @@ npm-debug.log*
 **/node_modules/
 **/dist/
 **/dist-ssr/
-app/node_modules/
-app/dist/
+node_modules/
+dist/
 
 # Temporary and bulky files
 *.zip
@@ -18,3 +18,13 @@ app/dist/
 .idea/
 *.suo
 *.sw?
+
+# Local quote templates, quotes directory, scripts and resources (ignored in Git)
+/*.html
+/nabidky/
+/galerka/
+/copy_gallery.mjs
+/add_save_template.mjs
+/podpis_jednatel.png
+/tech-spec.md
+/app/
