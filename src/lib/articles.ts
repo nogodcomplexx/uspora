@@ -47,7 +47,7 @@ export const articles: Article[] = [
     description: 'Zjistěte, jak funguje solární elektrárna, z jakých komponent se skládá a na co si dát pozor při výběru dodavatele pro váš dům.',
     date: '5. Května 2026',
     readTime: '6 min čtení',
-    image: '/images/fve_blueprint.png',
+    image: '/images/fve_water_heating_scheme.jpg',
     content: `
       <h2>Co je to fotovoltaická elektrárna (FVE)?</h2>
       <p>Fotovoltaická elektrárna je sofistikovaný systém, který dokáže přeměnit sluneční záření přímo na elektrickou energii, kterou můžete využít pro chod vaší domácnosti. Od rozsvícení žárovky až po nabití elektromobilu nebo ohřev vody v bojleru.</p>
