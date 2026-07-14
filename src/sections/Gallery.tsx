@@ -421,7 +421,7 @@ export function Gallery() {
               Ukázky z našich montáží
             </h3>
             <p className="text-[#94A3B8] text-base md:text-lg mt-4">
-              Realizovali jsme již přes 500 instalací po celé České republice. Prohlédněte si naše precizní řešení na různých typech střech i na zahradách.
+              Realizovali jsme již přes 500 instalací po celé České republice. Prohlédněte si naše precizní řešení na plochých střechách i zahradách. Zakládáme si na 100% transparentnosti – se souhlasem stávajících klientů vám rádi zprostředkujeme přímý kontakt pro nezávislé ověření jejich spokojenosti.
             </p>
           </div>
         </ScrollReveal>
